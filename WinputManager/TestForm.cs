@@ -31,7 +31,6 @@ namespace WinputManager
             mouseHook.OnMouseMove += MouseHook_OnMouseMove;
             mouseHook.OnMouseWheelEvent += MouseHook_OnMouseWheelEvent;
             mouseHook.Install();
-
         }
 
         protected override void OnClosed(EventArgs e)
@@ -40,7 +39,6 @@ namespace WinputManager
             keyboardHook.Uninstall();
             mouseHook.Uninstall();
         }
-
 
         #region Hook events
         private bool KeyboardHook_OnKeyboardEvent(uint key, BaseHook.KeyState keyState)
