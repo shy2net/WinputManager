@@ -13,6 +13,9 @@ namespace WinputManager
     /// </summary>
     public class KeyboardHook : BaseHook
     {
+        public delegate bool OnKeyboardEventHandler(uint key, KeyState keyState);
+        public event OnKeyboardEventHandler OnKeyboardEvent;
+
         public KeyboardHook() : base(HookType.KeyboardHook)
         {
 
@@ -31,8 +34,36 @@ namespace WinputManager
 
         protected override IntPtr OnHookCall(int nCode, IntPtr wParam, IntPtr lParam)
         {
-            KeyboardHookStruct keyboardStruct = (KeyboardHookStruct) Marshal.PtrToStructure(lParam, typeof(KeyboardHookStruct));
+            KeyboardHookStruct keyboardStruct = (KeyboardHookStruct)Marshal.PtrToStructure(lParam, typeof(KeyboardHookStruct));
+            var returnCall = OnKeyboardHookCall(nCode, wParam, keyboardStruct);
+            if ((int)returnCall != 0) return returnCall;
+
             return base.OnHookCall(nCode, wParam, lParam);
+        }
+
+        /// <summary>
+        ///  Called when a keyboard hook called had occured, use this instead of OnHookCall to read the keyboard structure.
+        /// </summary>
+        /// <param name="nCode"></param>
+        /// <param name="wParam"></param>
+        /// <param name="keyboardStruct"></param>
+        /// <returns></returns>
+        protected virtual IntPtr OnKeyboardHookCall(int nCode, IntPtr wParam, KeyboardHookStruct keyboardStruct)
+        {
+            // If events are being listened, call to the associated keyboard down or up and check if we should consume the event or not
+            if (OnKeyboardEvent != null)
+            {
+                var consumeEvent = false;
+
+                if ((int)wParam == Constants.WM_KEYDOWN || (int)wParam == Constants.WM_SYSKEYDOWN)
+                    consumeEvent = OnKeyboardEvent(keyboardStruct.vkCode, KeyState.Keydown);
+                else if ((int)wParam == Constants.WM_KEYUP || (int)wParam == Constants.WM_SYSKEYUP)
+                    consumeEvent = OnKeyboardEvent(keyboardStruct.vkCode, KeyState.Keyup);
+
+                if (consumeEvent) return (IntPtr)Constants.CONSUME_INPUT;
+            }
+
+            return IntPtr.Zero;
         }
     }
 }

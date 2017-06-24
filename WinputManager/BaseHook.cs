@@ -34,14 +34,17 @@ namespace WinputManager
         public static extern IntPtr GetModuleHandle(string lpModuleName);
         #endregion
         #region Constants
-        const int WH_KEYBOARD_LL = 13;
-        const int WH_MOUSE_LL = 14;
-        const int CONSUME_KEY_INPUT = 1;
 
         public enum HookType
         {
-            KeyboardHook = WH_KEYBOARD_LL,
-            MouseHook = WH_MOUSE_LL
+            KeyboardHook = Constants.WH_KEYBOARD_LL,
+            MouseHook = Constants.WH_MOUSE_LL
+        }
+
+        public enum KeyState
+        {
+            Keydown = 0,
+            Keyup = 1
         }
         #endregion
 
