@@ -9,6 +9,9 @@ using System.Windows.Forms;
 
 namespace WinputManager
 {
+    /// <summary>
+    /// A sample form to test out the capabilities of WinputManager.
+    /// </summary>
     public partial class TestForm : Form
     {
         KeyboardHook keyboardHook = new KeyboardHook();
