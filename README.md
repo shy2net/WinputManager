@@ -1,7 +1,23 @@
 # WinputManager
 A simple library to access windows input API (such as system global hooks for input recording and simulate input events) easily using .Net (C#\VB .net).
 
-## What is this?
+An example of a simple code that captured keyboard input globally:
+```csharp
+private void OnFormLoad() {
+    // Setup keyboard hook
+    keyboardHook.OnKeyboardEvent += KeyboardHook_OnKeyboardEvent;
+    keyboardHook.Install();
+}
+
+// This method will be called whenever the user types any key
+private bool KeyboardHook_OnKeyboardEvent(uint key, BaseHook.KeyState keyState)
+{
+    // Here goes you code that analyzes what to do with the captured input
+    return false;
+}
+```
+
+## What's this?
 WinputManager allows you to capture Windows common input (mouse and keyboard) easily. It works at system global level which means all of the low level input is being captured (By using the SetWindowsHookEx winapi).
 
 It is the new library of [InputManager](https://www.codeproject.com/Articles/117657/InputManager-library-Track-user-input-and-simulate) (originally written for the commercial use of [Mouse Recorder Pro](http://byshynet.com/software.php?id=3)).
@@ -17,18 +33,15 @@ WinputManager allows you to perform the following:
 * Exceptions are thrown when hooking fails
 
 
-### Compiling and running this library
-The library comes by default as a simple Windows Application. You can run it just as any .Net project.
+## Compiling and running this library
+The library comes by default with a running working code example. You can run it just as any .Net project.
 Running it will open up an example window showing how to work with this library.
 
-**In order to use this library in your project please change the WinputManager project Output type to Class library (right clicking on Solution Explorer > WinputManager > Properties > Output type > Class library).**
+**In order to use this library in your project please change the WinputManager project Output type to Class library (right clicking on Solution Explorer > WinputManager > Properties > Output type > Class library, and then rebuild it).**
 
-### Recording user input
-Using WinputManager you can easily mouse and keyboard inputs such as: 
-* mouse clicks
-* keyboard typing
-* mouse movements
-* mouse scrolling
+## Recording user input
+Using WinputManager you can easily capture mouse and keyboard inputs such as: 
+mouse clicks, keyboard typing, mouse movements, mouse scrolling.
 
 In order to the user input, you need to setup hooks using:
 * KeyboardHook - a class reponsible of capturing keyboard events.
@@ -96,5 +109,4 @@ private bool MouseHook_OnMouseEvent(int mouseEvent)
     return false;
 }
 ```
-
 
