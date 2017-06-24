@@ -22,9 +22,11 @@ namespace WinputManager
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
+            // Setup keyboard hook
             keyboardHook.OnKeyboardEvent += KeyboardHook_OnKeyboardEvent;
             keyboardHook.Install();
 
+            // Setup mouse hook
             mouseHook.OnMouseEvent += MouseHook_OnMouseEvent;
             mouseHook.OnMouseMove += MouseHook_OnMouseMove;
             mouseHook.OnMouseWheelEvent += MouseHook_OnMouseWheelEvent;
@@ -36,6 +38,7 @@ namespace WinputManager
         {
             base.OnClosed(e);
             keyboardHook.Uninstall();
+            mouseHook.Uninstall();
         }
 
 
@@ -59,9 +62,7 @@ namespace WinputManager
 
         private bool MouseHook_OnMouseMove(int x, int y)
         {
-            LogToCapturedEvents(String.Format("Mouse moved to: {0},{1}",
-                                                                x, y));
-
+            LogToCapturedEvents(String.Format("Mouse moved to: {0},{1}", x, y));
             return consumeMouseEventsCheckBox.Checked;
         }
 
