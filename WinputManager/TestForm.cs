@@ -52,7 +52,7 @@ namespace WinputManager
         private bool MouseHook_OnMouseWheelEvent(int wheelValue)
         {
             LogToCapturedEvents(String.Format("{0} mouse wheel value captured",
-                wheelValue));
+                (MouseHook.MouseWheelEvents) wheelValue).ToString());
 
             return consumeMouseEventsCheckBox.Checked;
         }

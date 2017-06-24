@@ -69,7 +69,6 @@ namespace WinputManager
                 hookHandle = SetWindowsHookEx((int) hookType, hookDelegate, GetModuleHandle(Process.GetCurrentProcess().MainModule.ModuleName), 0);
             }
 
-
             if (hookHandle == IntPtr.Zero)
                 throw new Exception("Failed to setup hook, last win32 api error: " + Marshal.GetLastWin32Error());
         }

@@ -96,7 +96,7 @@ namespace WinputManager
         }
 
         /// <summary>
-        ///  Called when a mouse hook called had occured, use this instead of OnHookCall to read the mouse structure.
+        ///  Called when a mouse hook call had occured, use this instead of OnHookCall to read the mouse structure.
         /// </summary>
         /// <param name="nCode"></param>
         /// <param name="wParam"></param>

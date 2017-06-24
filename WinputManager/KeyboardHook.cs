@@ -42,7 +42,7 @@ namespace WinputManager
         }
 
         /// <summary>
-        ///  Called when a keyboard hook called had occured, use this instead of OnHookCall to read the keyboard structure.
+        ///  Called when a keyboard hook call had occured, use this instead of OnHookCall to read the keyboard structure.
         /// </summary>
         /// <param name="nCode"></param>
         /// <param name="wParam"></param>
