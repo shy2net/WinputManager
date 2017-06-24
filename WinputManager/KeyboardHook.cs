@@ -11,7 +11,7 @@ namespace WinputManager
     /// <summary>
     /// A low level system wide keyboard hook which can be used to listen to all mouse events across the application.
     /// </summary>
-    class KeyboardHook : BaseHook
+    public class KeyboardHook : BaseHook
     {
         public KeyboardHook() : base(HookType.KeyboardHook)
         {

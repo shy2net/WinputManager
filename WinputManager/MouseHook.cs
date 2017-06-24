@@ -9,7 +9,7 @@ namespace WinputManager
     /// <summary>
     /// A low level system wide mouse hook which can be used to listen to all mouse events across the application.
     /// </summary>
-    class MouseHook : BaseHook
+    public class MouseHook : BaseHook
     {
         public MouseHook() : base(HookType.MouseHook)
         {

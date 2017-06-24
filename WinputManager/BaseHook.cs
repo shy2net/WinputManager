@@ -7,6 +7,9 @@ using System.Text;
 
 namespace WinputManager
 {
+    /// <summary>
+    /// A low level system wide hook class allows making keyboard and mouse hooks easier.
+    /// </summary>
     public abstract class BaseHook
     {
         private IntPtr hookHandle;
