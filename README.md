@@ -1,7 +1,7 @@
 # WinputManager
 A simple library to access windows input API (such as system global hooks for input recording and simulate input events) easily using .Net (C#\VB .net).
 
-An example of a simple code that captured keyboard input globally:
+An example of a simple code that captures keyboard input globally:
 ```csharp
 private void OnFormLoad() {
     // Setup keyboard hook
